@@ -267,8 +267,10 @@ install: stripped
 	chown -R root $(SCRIPT_DIR)/games
 	chmod -R g-s  $(SCRIPT_DIR)/games
 	#
-	xdg-desktop-menu  install --novendor misc/oblige.desktop
-	xdg-icon-resource install --novendor --size 32 misc/oblige.xpm
+	if command -v xdg-desktop-menu ; then \
+	xdg-desktop-menu  install --novendor misc/oblige.desktop ; fi
+	if command -v xdg-icon-resource ; then \
+	xdg-icon-resource install --novendor --size 32 misc/oblige.xpm ; fi
 
 uninstall:
 	rm -v $(PREFIX)/bin/oblige

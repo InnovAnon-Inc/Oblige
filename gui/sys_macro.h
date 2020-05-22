@@ -56,11 +56,11 @@
     ((x) < (low) ? (low) : (x) > (high) ? (high) : (x))
 #endif
 
-#ifdef __GNUC__
+/*#ifdef __GNUC__
 #define PACKEDATTR  __attribute__((packed))
-#else
+#else*/
 #define PACKEDATTR
-#endif
+/*#endif*/
 
 #endif  /* __SYS_MACRO_H__ */
 

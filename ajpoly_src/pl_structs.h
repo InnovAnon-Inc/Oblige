@@ -17,11 +17,11 @@
 #ifndef __AJPOLY_STRUCTS_H__
 #define __AJPOLY_STRUCTS_H__
 
-#ifdef __GNUC__
+/*#ifdef __GNUC__
 #define PACKEDATTR __attribute__((packed))
-#else
+#else*/
 #define PACKEDATTR
-#endif
+/*#endif*/
 
 typedef struct
 {
