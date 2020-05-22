@@ -267,15 +267,15 @@ install: stripped
 	chown -R root $(SCRIPT_DIR)/games
 	chmod -R g-s  $(SCRIPT_DIR)/games
 	#
-	[ ! `command -v xdg-desktop-menu`  ] || xdg-desktop-menu  install --novendor misc/oblige.desktop
-	[ ! `command -v xdg-icon-resource` ] || xdg-icon-resource install --novendor --size 32 misc/oblige.xpm
+	xdg-desktop-menu  install --novendor misc/oblige.desktop       || :
+	xdg-icon-resource install --novendor --size 32 misc/oblige.xpm || :
 
 uninstall:
 	rm -v $(PREFIX)/bin/oblige
 	rm -Rv $(SCRIPT_DIR)
 	#
-	[ ! `command -v xdg-desktop-menu`  ] || xdg-desktop-menu  uninstall --novendor misc/oblige.desktop
-	[ ! `command -v xdg-icon-resource` ] || xdg-icon-resource uninstall --novendor --size 32 oblige
+	xdg-desktop-menu  uninstall --novendor misc/oblige.desktop || :
+	xdg-icon-resource uninstall --novendor --size 32 oblige    || :
 
 xgettext:
 	xgettext -o LANG_TEMPLATE.txt -k_ -kN_ -F -i --foreign-user --package-name="Oblige Level Maker" $(LANG_FILES)
