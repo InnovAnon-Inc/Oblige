@@ -4,13 +4,13 @@ set -e
 #
 # Show help
 #
-if [ $# -eq 0 ]
+if [[ $# -eq 0 ]]
 then
     echo "USAGE: pack-it linux/win32"
     exit
 fi
 
-if [ ! -d lua_src ]; then
+if [[ ! -d lua_src ]]; then
     echo "Run this script from the top level."
     exit 1
 fi
@@ -19,7 +19,7 @@ fi
 # Grab the mode
 #
 mode=$1
-if [ $mode != "win32" ] && [ $mode != "linux" ]
+if [[ $mode != "win32" ]] && [[ $mode != "linux" ]]
 then
     echo "Unknown mode: $mode"
     exit
@@ -58,7 +58,7 @@ rm -f $dest/data/*.pak
 #  Executables
 #
 
-if [ $mode == "linux" ]
+if [[ $mode == "linux" ]]
 then
 cp -av Oblige $dest
 else

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ "$1" == "--help" ]
+if [[ "$1" = "--help" ]]
 then
 	echo "USAGE: test-it  oblige_options..."
 	exit
 fi
 
-if [ ! -d lua_src ]
+if [[ ! -d lua_src ]]
 then
 	echo "Run this script from the top level."
 	exit 1
