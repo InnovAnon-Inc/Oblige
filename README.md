@@ -2,6 +2,7 @@
 minor changes to make this compile automatically
 so I could simplify my Dockerfile for docker-wads project.
 ==========
+
 [![CircleCI](https://img.shields.io/circleci/build/github/InnovAnon-Inc/Oblige?color=%23FF1100&logo=InnovAnon%2C%20Inc.&logoColor=%23FF1133&style=plastic)](https://circleci.com/gh/InnovAnon-Inc/Oblige)
 [![Repo Size](https://img.shields.io/github/repo-size/InnovAnon-Inc/Oblige?color=%23FF1100&logo=InnovAnon%2C%20Inc.&logoColor=%23FF1133&style=plastic)](https://github.com/InnovAnon-Inc/Oblige)
 [![LoC](https://tokei.rs/b1/github/InnovAnon-Inc/Oblige?category=code)](https://github.com/InnovAnon-Inc/Oblige)
@@ -13,9 +14,11 @@ so I could simplify my Dockerfile for docker-wads project.
 [![License Summary](https://img.shields.io/github/license/InnovAnon-Inc/Oblige?color=%23FF1100&label=Free%20Code%20for%20a%20Free%20World%21&logo=InnovAnon%2C%20Inc.&logoColor=%23FF1133&style=plastic)](https://tldrlegal.com/license/gnu-general-public-license-v2#summary)
 
 ![Corporate Logo](https://i.imgur.com/UD8y4Is.gif)
+==========
 
 # Original README
 ----------
+
 # OBLIGE 7.70
 by Andrew Apted.
 
