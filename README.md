@@ -1,3 +1,7 @@
+minor changes to make this compile automatically
+so I could simplify my Dockerfile for docker-wads project.
+-----
+
 
 # OBLIGE 7.70
 by Andrew Apted.

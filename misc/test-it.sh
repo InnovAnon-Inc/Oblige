@@ -1,4 +1,5 @@
-#!/bin/bash
+#! /usr/bin/env bash
+set -eu
 
 if [[ "$1" = "--help" ]]
 then

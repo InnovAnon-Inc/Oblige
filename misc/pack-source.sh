@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#! /usr/bin/env bash
+set -eu
 
 if [[ ! -d glbsp_src ]] ; then
   echo "Run this script from the top level."

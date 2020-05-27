@@ -1,10 +1,10 @@
-#!/bin/bash
-set -e
+#! /usr/bin/env bash
+set -eu
 
 #
 # Show help
 #
-if [[ $# -eq 0 ]]
+if (( $# == 0 ))
 then
     echo "USAGE: pack-it linux/win32"
     exit
@@ -58,7 +58,7 @@ rm -f $dest/data/*.pak
 #  Executables
 #
 
-if [[ $mode == "linux" ]]
+if [[ $mode = "linux" ]]
 then
 cp -av Oblige $dest
 else

@@ -1,0 +1,57 @@
+version: 2.1
+jobs:
+  build:
+    docker: 
+      - image: innovanon/poobuntu-ci:latest
+    #parallelism: 4
+    steps:
+      - run:
+          command: |
+            set -exu
+            echo -e "$GPG_KEY" | gpg --import
+      - run:
+          command: |
+            set -exu
+            apt-fast install libfltk1.3-dev libxft-dev libxinerama-dev libjpeg-dev libpng-dev zlib1g-dev
+
+            git clone --recursive https://github.com/InnovAnon-Inc/${CIRCLE_PROJECT_REPONAME}.git
+            cd ${CIRCLE_PROJECT_REPONAME}
+
+            PACKAGE=${CIRCLE_PROJECT_REPONAME,,}
+
+            [ ! -z "`git tag`" ] || git tag v1.0
+            git describe --tags --long | grep -o '^v[^.]*\.[^.-]*' || git tag v1.0
+            #revisioncount=$(expr `git log --oneline | wc -l` + 1)
+            revisioncount=`git log --oneline | wc -l`
+            cleanversion="`git describe --tags --long | grep -o '^v[^.]*\.[^.-]*' | sed s/^v//`"
+            VERSION="$cleanversion.$revisioncount"
+
+            mkdir -pv /pkg
+
+            chmod -v +x misc/*.sh
+            make normalize
+            misc/pack-source.sh
+            zip -Z bzip2 -9 -l -r /pkg/oblige-${VERSION}-source.zip Oblige-X.XX-source
+
+            make
+            #make DESTDIR=install
+
+            misc/pack-it.sh linux
+            zip -Z bzip2 -9 -l -r /pkg/oblige-${VERSION}-linux.zip Oblige-X.XX
+            #zip -Z bzip2 -9 -l -r /pkg/oblige-XXX-win.zip Oblige-X.XX
+
+            misc/test-it.sh
+            #misc/test-many.sh
+
+            for k in /pkg/* ; do
+              gpg --local-user 53F31F9711F06089\! --sign $k
+            done
+
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete v${VERSION} /pkg
+
+workflows:
+  version: 2.1
+  commit:
+    jobs:
+      - build
+
