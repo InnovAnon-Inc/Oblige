@@ -4,7 +4,7 @@ set -eu
 #
 # Show help
 #
-if (( $# == 0 ))
+if (( ! $# ))
 then
     echo "USAGE: pack-it linux/win32"
     exit
