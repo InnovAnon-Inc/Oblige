@@ -13,7 +13,8 @@
 PROGRAM=Oblige
 
 # prefix choices: /usr  /usr/local  /opt
-PREFIX=/usr/local
+PREFIX:=/usr/local
+DESTDIR:=/
 
 SCRIPT_DIR=$(PREFIX)/share/oblige
 
@@ -241,38 +242,38 @@ stripped: $(PROGRAM)
 	strip --strip-unneeded $(PROGRAM)
 
 install: stripped
-	install -o root -m 755 $(PROGRAM) $(PREFIX)/bin/oblige
+	install -o root -m 755 $(PROGRAM) $(DESTDIR)$(PREFIX)/bin/oblige
 	#
-	install -d $(SCRIPT_DIR)/scripts
-	install -d $(SCRIPT_DIR)/engines
-	install -d $(SCRIPT_DIR)/modules
-	install -d $(SCRIPT_DIR)/addons
-	install -d $(SCRIPT_DIR)/language
+	install -d $(DESTDIR)$(SCRIPT_DIR)/scripts
+	install -d $(DESTDIR)$(SCRIPT_DIR)/engines
+	install -d $(DESTDIR)$(SCRIPT_DIR)/modules
+	install -d $(DESTDIR)$(SCRIPT_DIR)/addons
+	install -d $(DESTDIR)$(SCRIPT_DIR)/language
 	#
-	install -o root -m 644 scripts/*.lua $(SCRIPT_DIR)/scripts
-	install -o root -m 644 engines/*.lua $(SCRIPT_DIR)/engines
-	install -o root -m 644 modules/*.lua $(SCRIPT_DIR)/modules
-	install -o root -m 644  addons/*.pk3 $(SCRIPT_DIR)/addons
-	install -o root -m 644 language/*.*  $(SCRIPT_DIR)/language
+	install -o root -m 644 scripts/*.lua $(DESTDIR)$(SCRIPT_DIR)/scripts
+	install -o root -m 644 engines/*.lua $(DESTDIR)$(SCRIPT_DIR)/engines
+	install -o root -m 644 modules/*.lua $(DESTDIR)$(SCRIPT_DIR)/modules
+	install -o root -m 644  addons/*.pk3 $(DESTDIR)$(SCRIPT_DIR)/addons
+	install -o root -m 644 language/*.*  $(DESTDIR)$(SCRIPT_DIR)/language
 	#
-	install -d $(SCRIPT_DIR)/data
-	install -d $(SCRIPT_DIR)/data/bg
-	install -d $(SCRIPT_DIR)/data/masks
-	install -o root -m 644 data/*.* $(SCRIPT_DIR)/data
-	install -o root -m 644 data/bg/*.* $(SCRIPT_DIR)/data/bg
-	install -o root -m 644 data/masks/*.* $(SCRIPT_DIR)/data/masks
+	install -d $(DESTDIR)$(SCRIPT_DIR)/data
+	install -d $(DESTDIR)$(SCRIPT_DIR)/data/bg
+	install -d $(DESTDIR)$(SCRIPT_DIR)/data/masks
+	install -o root -m 644 data/*.* $(DESTDIR)$(SCRIPT_DIR)/data
+	install -o root -m 644 data/bg/*.* $(DESTDIR)$(SCRIPT_DIR)/data/bg
+	install -o root -m 644 data/masks/*.* $(DESTDIR)$(SCRIPT_DIR)/data/masks
 	#
-	rm -Rf $(SCRIPT_DIR)/games
-	cp -a games $(SCRIPT_DIR)/games
-	chown -R root $(SCRIPT_DIR)/games
-	chmod -R g-s  $(SCRIPT_DIR)/games
+	rm -Rf $(DESTDIR)$(SCRIPT_DIR)/games
+	cp -a games $(DESTDIR)$(SCRIPT_DIR)/games
+	#chown -R root $(DESTDIR)$(SCRIPT_DIR)/games
+	chmod -R g-s  $(DESTDIR)$(SCRIPT_DIR)/games
 	#
 	-xdg-desktop-menu  install --novendor misc/oblige.desktop
 	-xdg-icon-resource install --novendor --size 32 misc/oblige.xpm
 
 uninstall:
-	rm -v $(PREFIX)/bin/oblige
-	rm -Rv $(SCRIPT_DIR)
+	rm -v $(DESTDIR)$(PREFIX)/bin/oblige
+	rm -Rv $(DESTDIR)$(SCRIPT_DIR)
 	#
 	-xdg-desktop-menu  uninstall --novendor misc/oblige.desktop
 	-xdg-icon-resource uninstall --novendor --size 32 oblige
